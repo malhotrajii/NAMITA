@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For my RADHA</title>
+     <style>
+      * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100dvh;
+  perspective: 1000px;
+  font: 1em/1.4 "Poppins", sans-serif;
+  overflow: hidden;
+  color: hsl(180, 38%, 89%);
+  background-image: radial-gradient(
+      circle farthest-corner at 50% 50%,
+      hsl(187 20% 88%) 30%,
+      hsl(149 20% 94%) 100%
+  );
+}
+
+.book {
+  position: relative;
+  display: flex;
+  margin: auto;
+  width: 42cqmin; /* Increased width */
+  pointer-events: none;
+  transform-style: preserve-3d;
+  transition: translate 1s;
+  translate: calc(min(var(--c), 1) * 50%) 0%;
+  rotate: 1 0 0 30deg;
+}
+
+.page {
+  --thickness: 4;
+  flex: none;
+  display: flex;
+  width: 100%;
+  font-size: 2.2cqmin; /* Slightly increased font size */
+  pointer-events: all;
+  user-select: none;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 1s,
+      rotate 1s ease-in calc((min(var(--i), var(--c)) - max(var(--i), var(--c))) * 50ms);
+  translate: calc(var(--i) * -100%) 0px 0px;
+  transform: translateZ(calc((var(--c) - var(--i) - 0.5) * calc(var(--thickness) * 0.23cqmin)));
+  rotate: 0 1 0 calc(clamp(0, var(--c) - var(--i), 1) * -180deg);
+}
+
+.front,
+.back {
+  position: relative;
+  flex: none;
+  width: 100%;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background-color: #fff;
+  translate: 0px;
+}
+
+.back {
+  translate: -100% 0;
+  rotate: 0 1 0 180deg;
+}
+
+.book {
+  counter-reset: page -1;
+}
+
+.book a {
+  color: inherit;
+}
+
+.page {
+  box-shadow: 0em 0.5em 1em -0.2em #00000020;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  padding: 2em;
+  border: 1px solid #0002;
+}
+
+.front:has(img),
+.back:has(img) {
+  padding: 0;
+}
+
+.front img,
+.back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.front::after,
+.back::after {
+  position: absolute;
+  bottom: 1em;
+  counter-increment: page;
+  content: counter(page) ".";
+  font-size: 0.8em;
+}
+
+.cover::after {
+  content: "";
+}
+
+.front::after {
+  right: 1em;
+}
+
+.front {
+  background: linear-gradient(to right, #f4c6db, #eee8ea, #f4c6db);
+  border-radius: 0.1em 0.5em 0.5em 0.1em;
+}
+
+.back::after {
+  left: 1em;
+}
+
+.back {
+  background-image: linear-gradient(to right, #f4c6db, #f2eaed, #f4c6db);
+  border-radius: 0.5em 0.1em 0.1em 0.5em;
+}
+
+.cover {
+  background: radial-gradient(
+          circle farthest-corner at 80% 20%,
+          hsl(150 80% 20% / 0.3) 0%,
+          hsl(170 60% 10% / 0.1) 100%
+      ),
+      hsl(231, 32%, 29%) url("./12.png") 50% / cover;
+  color: hsl(0, 100%, 30%); /* Dark red text color for cover page */
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: 1px;
+  color: hsl(0, 91%, 54%); /* Dark red heading color */
+}
+
+p {
+  margin-top: 1px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: hsl(0, 5%, 4%); /* Dark red text color for paragraphs */
+}
+
+.front,
+.back {
+  padding: 1.5em;
+  color: hsl(0, 8%, 8%); /* Dark red text color for front and back pages */
+}
+
+.book {
+  width: 40cqmin; /* Slightly increased width */
+}
+
+.page {
+  font-size: 2cqmin; /* Slightly increased font size */
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.5em;
+}
+
+h2 {
+  margin-bottom: 5px;
+}
+
+p {
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100dvh;
+  perspective: 1000px;
+  font: 1em/1.4 "Poppins", sans-serif;
+  overflow: hidden;
+  color: hsl(180, 2%, 8%);
+  background-image: url('16.png'); /* Replace with your image path */
+  background-size: cover;      /* Makes sure the image covers the whole area */
+  background-repeat: no-repeat;
+  background-position: center ;
+}
+
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Emoji Animation */
+.emoji {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0;
+  animation: floatEmojis 6s ease-in-out infinite;
+}
+
+@keyframes floatEmojis {
+  0% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-100px) rotate(20deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+}
+
+/* Add random timing for each emoji */
+.emoji:nth-child(1) {
+  animation-delay: 0s;
+  left: 10%;
+}
+.emoji:nth-child(2) {
+  animation-delay: 1s;
+  left: 20%;
+}
+.emoji:nth-child(3) {
+  animation-delay: 2s;
+  left: 30%;
+}
+.emoji:nth-child(4) {
+  animation-delay: 3s;
+  left: 40%;
+}
+.emoji:nth-child(5) {
+  animation-delay: 4s;
+  left: 50%;
+}
+.emoji:nth-child(6) {
+  animation-delay: 5s;
+  left: 60%;
+}
+.emoji:nth-child(7) {
+  animation-delay: 6s;
+  left: 70%;
+}
+.emoji:nth-child(8) {
+  animation-delay: 7s;
+  left: 80%;
+}
+.emoji:nth-child(9) {
+  animation-delay: 8s;
+  left: 90%;
+}
+
+
+     </style>
+  </head>
+  <body>
+    <div class="book">
+      <div class="page">
+        <div class="front cover">
+          <h1
+            style="
+              color: rgb(255, 255, 255);
+              text-shadow: 5px 2px 5px rgb(9, 8, 8);
+            "
+          >
+             NAMITA🤍
+          </h1>
+
+          <p
+            style="
+              color: rgb(255, 255, 255);
+              text-shadow: 5px 2px 5px rgb(20, 19, 19);
+            "
+          >
+            <br />
+          </p>
+        </div>
+        <div class="back">
+          <h2> You came into my life as moon in the dark sky<Label></Label> ❤️✨</h2>
+
+       <p>The day we met on Roblox — 11th July 2024 — you were so kind and sweet to me. You listened to me like I truly mattered and made me feel valued. 
+        No one has ever made me feel special as you have.I still can’t believe how someone can be so incredibly kind and so breathtakingly beautiful. But that’s just you — my girl..
+        We started following each other on instagram on 14 july 2024 started sharing a lot of similar thoughts and become best friends in very less time .
+        We started loving each other without even confessing and thats what make this bond stronger than any force of attraction in this world. 
+        Feels like the god has sent you in my life you are A BLESSING TO ME .
+        
+           
+                💖</p>
+
+          <p>
+           
+          </p>
+        </div>
+      </div>
+      <!--2nd page-->
+      <div class="page">
+        <div class="front">
+          <h2>My First love ❤️✨</h2>
+          <p>For the very first time, on 7th October 2024, I said "I love you" to you. Loving you has been the most beautiful feeling in the world. I love you so much. I still don’t know what I did to deserve someone as amazing as you.
+
+            I just want to give you the world and see you smile in front of me for the rest of my life. You deserve far more love than you think — more love than I’ve ever been able to give. Even if I spent forever trying to show you how much you mean to me, it still wouldn’t be enough.
+            
+            YOU ARE MY FIRST LOVE — and my forever. Before I met you, I didn’t even know what love truly was. But now I understand that to love and to be loved is the greatest blessing of all. It’s a privilege to be loved by you.
+            
+            I got the best partner in the world. I FOUND MY BETTER HALF. 💕
+          </p>
+        </div>
+        <div class="back">
+          <img src="./17.jpg" alt="Img 1" />
+        </div>
+      </div>
+      <!--3rd page-->
+      <div class="page">
+        <div class="front">
+          <h2>RADHA ✨💖</h2>
+          <p>
+            You are like the most beautifull flower spreading your fragnance through your personality and cuteness everywhere you go.
+            I know that angels exist because i have one.
+            Your presence is enough to fade away the most beautifull view in this world.
+           I can call you swarg se utri hui kokil kanthi apsara par yaha to swarg hi utr gya zameen pe.
+          After god had made this universe he gave birth to you to add beauty in it. 
+          I love it that you always wear that beautifull smile on your face.
+           Your face blooms like lotus when you smile .Your eyes hold constellations not yet named,
+           they are more beautifull than a galaxy full of stars.
+           I can never truly describe your beauty but i'll always tell you straight from my heart,YOU LOOK BEAUTIFULL.
+            
+
+
+            
+
+
+          </p>
+        </div>
+        <div class="back">
+          <h2></h2>
+          <p>
+                You have a beautifull soul . Your beauty radiates from within it’s in your voice, your laugh, your kindness. You glow in a way mirrors could never capture . 
+            You are so much beautifull but even more beautifull as a preson. You are the very definition of being full of life — a radiant soul who carries sunshine in her smile and fire in her heart.
+
+            No matter what life brings to you, you face it with full of excitement and energy. It’s as if the world can’t dull your spark and that spark lights up everyone around you.
+            
+            You’re not just someone to admire for how you look you’re an inspiration.
+            You were born to wear a crown because you are a QUEEN IN EVERY SENSE.
+            
+         
+            
+                 </p>
+        </div>
+      </div>
+      <!--4th page-->
+      <div class="page">
+        <div class="front">
+          <h2>We are Love</h2>
+          <p>I don't just love you I exist in love with you. Like the ocean exists with the shore, always meeting.
+            Happiness is us together.Every moment with you is the best moments of my life .
+              You are the northern lights of my nights .When I hold you close, the world disappears. It's just you and me, and nothing else matters. You're my heart’s home
+              Every time I look into your eyes, I see my future, a future filled with love, joy, and endless adventures with you by my side.
+              Your presence is a beautiful calm in this busy world . You are my sukoon.
+             Every time I see a message from you, I can’t help but smile. No matter how my day is going, our conversations make everything feel lighter and brighter.
+
+            You have a way of making the simplest moments special.
+            
+            I never knew a conversation could mean so much, but with you, it does.YOU ARE EXTRAORDINARY.
+          </p>
+        </div>
+        <div class="back">
+          <img src="./18.png" alt="Img 1" />
+        </div>
+      </div>
+      <!--5th page-->
+      <div class="page">
+        <div class="front">
+          <h1>God bless you💫💖</h1>
+          <p>Every inch of me belongs to you. My thoughts, my dreams, my heartbeat they all whisper your name like a prayer.
+            If love had a face, it would look like you. If it had a voice, it would sound like you whispering my name .
+            When I hold you, I’m not just touching your skin I’m holding my whole universe. You are where I begin and where I end.
+            You make me believe that maybe the universe isn’t infinite because it poured every drop of its wonder, its beauty, its love into you.
+            You’re not just my person you are my prayer answered.
+            There’s something eternal about us. Like we’ve loved each other before, and we’re just finding our way back home.
+            Loving you is the very essence of my bieng like breathing ,like living.
+            I truly wish you a life filled with happiness, peace, and everything you deserve. 
+            
+            You are very special, and I hope life gives you endless reasons to smile .GOD BLESS YOU MERI JAAN.
+
+          </p>
+        </div>
+        <div class="back">
+          <h1>I LOVE YOU</h1>
+          <p>Even flowers would blush in your presence. Nature tries its best, but nothing compares to you.
+            I swear the moon envies the glow in your eyes, and the stars dim a little when you smile.
+            You have a kind of elegance in you that no painting could capture, no song could describe .
+            Your eyes are like the endless sky to look into them is touch the eternal.
+            I think I could stare into your eyes forever and still never fully understand how someone could be as perfect as you are.
+            In a world full of temporary things, you are my forever, the one constant I hold onto with all my heart.
+            Your beauty is not of this earth, but of a realm where only gods dare to dwell.
+            You are adorable like a penguin and and loyal like a swan. 
+            I am so gratefull to have you .
+            I LOVE YOU SO MUCH
+           
+
+          
+           
+          </p>
+        </div>
+      </div>
+      <!--6th page-->
+      <div class="page">
+        <div class="front">
+          <h2>When I say ‘I love you,’ I mean it like a vow whispered to the universe ✨💖</h2>
+          <p>
+            Every version of me loves every version of you .
+            To love you is to be reborn with every breath.
+            You have the kind of presence that doesn’t fade after goodbye .
+            You are always in my mind and heart.
+            You are the kind of person the stars spend lifetimes aligning for.
+           You look RADHA in every dress.
+           I have seen beauty in sunsets, oceans, and art but nothing compares to you.
+           Even if I had all the words, they would still fall short. Because how do you describe a soul like yours except to say, YOU ARE MY EVERYTHIG.
+           
+          </p>
+        </div>
+        <div class="back">
+          <h2>Tujhe kis tarah bataye ke kitna jaruri tera pyar h mere andhiyare se jivan me tu hi safedi ki chamkar h</h2>
+          <p>
+            On 15 feb 2025 you said i love you to me for the very first time . Your love feels like a satisfaction kyuki tu hai to mujhe phir or kya chahie.
+            Our chemistry is so strong, if we were in a lab, we’d invent the formula for love.
+            If people ask what’s so special about us and I just smile and say, everything.
+            Its just the beginning of forever our love is beyond any word can describe its limitless. NAMITA FOREVER.
+          </p>
+        </div>
+      </div>
+      <!--7th page-->
+      
+
+      <div class="page">
+        <div class="front">
+          <img src="./19.png" alt="Img 1" />
+        </div>
+        <div class="back cover">
+          <h3>This book is straight from my heart for my one and only moon</h3>
+          <p>
+            <br /><a
+              href=""
+              target="_blank"
+              rel="nofollow"></a>
+
+            <br />
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="emoji"></div>
+<div class="emoji"></div>
+<div class="emoji"></div>
+<div class="emoji"></div>
+<div class="emoji"></div>
+<div class="emoji"></div>
+<div class="emoji"></div>
+<div class="emoji"></div>
+<div class="emoji"></div>
+<div class="emoji"></div>
+<div class="emoji"></div>
+<div class="emoji"></div>
+<div class="emoji"></div>
+
+<script>
+  const flipBook = (elBook) => {
+    elBook.style.setProperty("--c", 0); // Set current page
+    elBook.querySelectorAll(".page").forEach((page, idx) => {
+      page.style.setProperty("--i", idx);
+      page.addEventListener("click", (evt) => {
+        if (evt.target.closest("a")) return;
+        const curr = evt.target.closest(".back") ? idx : idx + 1;
+        elBook.style.setProperty("--c", curr);
+      });
+    });
+  };
+  
+  document.querySelectorAll(".book").forEach(flipBook);
+  
+</script>
+ 
+  </body>
+</html>
+
